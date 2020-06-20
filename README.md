@@ -1,24 +1,10 @@
-# README
+# tuck
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Tuck is a self-hosted Transactional email system, that makes it easy to get an email system for your stack up and running. Currently Work in progress.
 
-Things you may want to cover:
+### Motivations
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Make it easy to start sending emails from your application.
+* Make it easy for Mobile apps without backend to send emails.
+* Simplify managing your Email templates in one place.
+* Increase transperancy and accountability of Emails processed.
