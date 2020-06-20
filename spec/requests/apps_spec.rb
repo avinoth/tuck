@@ -15,13 +15,26 @@
 RSpec.describe "/apps", type: :request do
   # App. As you add validations to App, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
+  let(:valid_attributes) do
+    {
+      name: 'Trackiem',
+      smtp_key: Faker::Alphanumeric.alpha(number: 10),
+      smtp_secret: Faker::Alphanumeric.alpha(number: 20),
+      smtp_address: Faker::Internet.url,
+      smtp_port: 587,
+      smtp_authentication: :plain
+    }
+  end
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {
+      name: ''
+    }
   }
+
+  let(:user) { create(:user) }
+
+  before { sign_in user }
 
   describe "GET /index" do
     it "renders a successful response" do
@@ -31,17 +44,10 @@ RSpec.describe "/apps", type: :request do
     end
   end
 
-  describe "GET /show" do
-    it "renders a successful response" do
-      app = App.create! valid_attributes
-      get app_url(app)
-      expect(response).to be_successful
-    end
-  end
-
   describe "GET /new" do
     it "renders a successful response" do
       get new_app_url
+
       expect(response).to be_successful
     end
   end
@@ -62,9 +68,9 @@ RSpec.describe "/apps", type: :request do
         }.to change(App, :count).by(1)
       end
 
-      it "redirects to the created app" do
+      it "redirects to the  app list" do
         post apps_url, params: { app: valid_attributes }
-        expect(response).to redirect_to(app_url(App.last))
+        expect(response).to redirect_to(apps_url)
       end
     end
 
@@ -85,21 +91,23 @@ RSpec.describe "/apps", type: :request do
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {
+          name: 'Finesse'
+        }
       }
 
       it "updates the requested app" do
         app = App.create! valid_attributes
         patch app_url(app), params: { app: new_attributes }
         app.reload
-        skip("Add assertions for updated state")
+        expect(app.name).to eq('Finesse')
       end
 
       it "redirects to the app" do
         app = App.create! valid_attributes
         patch app_url(app), params: { app: new_attributes }
         app.reload
-        expect(response).to redirect_to(app_url(app))
+        expect(response).to redirect_to(apps_url)
       end
     end
 

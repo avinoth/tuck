@@ -10,10 +10,6 @@ RSpec.describe AppsController, type: :routing do
       expect(get: "/apps/new").to route_to("apps#new")
     end
 
-    it "routes to #show" do
-      expect(get: "/apps/1").to route_to("apps#show", id: "1")
-    end
-
     it "routes to #edit" do
       expect(get: "/apps/1/edit").to route_to("apps#edit", id: "1")
     end
