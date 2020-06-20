@@ -1,47 +1,64 @@
-<%= form_with(model: app, local: true) do |form| %>
-  <% if app.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(app.errors.count, "error") %> prohibited this app from being saved:</h2>
+<div class="row">
+  <div class="col-8">
+    <div class="card">
+      <div class="card-body">
+        <div class="card-title">
+          <h5><%= form_title %></h5>
+        </div>
 
-      <ul>
-        <% app.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+        <%= form_with(model: app, local: true) do |form| %>
+          <% if app.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(app.errors.count, "error") %> prohibited this app from being saved:</h2>
+
+              <ul>
+                <% app.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <div class="form-group field">
+            <%= form.label :name %>
+            <%= form.text_field :name, class: "form-control", required: true %>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group field col-md-6">
+              <%= form.label :smtp_key, 'SMTP key' %>
+              <%= form.text_field :smtp_key, class: "form-control", required: true %>
+            </div>
+
+            <div class="form-group field col-md-6">
+              <%= form.label :smtp_secret, 'SMTP secret' %>
+              <%= form.text_field :smtp_secret, class: "form-control", required: true %>
+            </div>
+          </div>
+
+          <div class="form-group field">
+            <%= form.label :smtp_address, 'SMTP address' %>
+            <%= form.text_field :smtp_address, class: "form-control", required: true %>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group field col-md-6">
+              <%= form.label :smtp_port, 'SMTP port' %>
+              <%= form.number_field :smtp_port, class: "form-control", required: true %>
+            </div>
+
+            <div class="form-group field col-md-6">
+              <%= form.label :smtp_authentication, 'SMTP authentication' %>
+              <%= form.text_field :smtp_authentication, class: "form-control", required: true %>
+            </div>
+          </div>
+
+          <div class="actions">
+            <%= form.submit class: "btn btn-primary" %>
+            <%= link_to 'Back', apps_path %>
+          </div>
         <% end %>
-      </ul>
+      </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
   </div>
-
-  <div class="field">
-    <%= form.label :smtp_key %>
-    <%= form.text_field :smtp_key %>
-  </div>
-
-  <div class="field">
-    <%= form.label :smtp_secret %>
-    <%= form.text_field :smtp_secret %>
-  </div>
-
-  <div class="field">
-    <%= form.label :smtp_address %>
-    <%= form.text_field :smtp_address %>
-  </div>
-
-  <div class="field">
-    <%= form.label :smtp_port %>
-    <%= form.number_field :smtp_port %>
-  </div>
-
-  <div class="field">
-    <%= form.label :smtp_authentication %>
-    <%= form.text_field :smtp_authentication %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>
