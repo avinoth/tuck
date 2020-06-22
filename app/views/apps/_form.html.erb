@@ -57,6 +57,16 @@
             <%= form.submit class: "btn btn-primary" %>
             <%= link_to 'Back', apps_path %>
           </div>
+
+          <div class="mt-30">
+            <%= link_to 'Delete',
+              app,
+              method: :delete,
+              data: { confirm: 'Are you sure?' },
+              class: "btn btn-outline-danger btn-sm"
+            %>
+          </div>
+
         <% end %>
       </div>
     </div>
