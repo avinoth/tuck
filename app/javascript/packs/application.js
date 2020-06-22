@@ -7,6 +7,7 @@ require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
+require('datatables.net-bs4')
 
 import '../stylesheets/application'
 import './bootstrap_custom.js'
@@ -16,3 +17,7 @@ import './bootstrap_custom.js'
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+
+$(document).ready(function() {
+    $('#datatable').DataTable();
+});
