@@ -1,36 +1,31 @@
-<p id="notice"><%= notice %></p>
+<% if notice.present? %>
+  <div class="alert alert-success" role="alert" id="notice">
+    <%= notice %>
+  </div>
+<% end %>
 
-<h1>Apps</h1>
-
-<table>
+<div class="clearfix pb-3">
+  <div class="d-inline float-left h1">Apps</div>
+  <div class="d-inline float-right"><%= link_to 'New App', new_app_path, class:"btn btn-primary" %></div>
+</div>
+<table id="datatable" class="table table-striped table-bordered w-100">
   <thead>
     <tr>
+      <th>S.no</th>
       <th>Name</th>
-      <th>Smtp key</th>
-      <th>Smtp secret</th>
-      <th>Smtp address</th>
-      <th>Smtp port</th>
-      <th>Smtp authentication</th>
-      <th colspan="3"></th>
+      <th>Created Date</th>
+      <th>Action</th>
     </tr>
   </thead>
 
   <tbody>
-    <% @apps.each do |app| %>
-      <tr>
-        <td><%= app.name %></td>
-        <td><%= app.smtp_key %></td>
-        <td><%= app.smtp_secret %></td>
-        <td><%= app.smtp_address %></td>
-        <td><%= app.smtp_port %></td>
-        <td><%= app.smtp_authentication %></td>
-        <td><%= link_to 'Edit', edit_app_path(app) %></td>
-        <td><%= link_to 'Destroy', app, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+    <% @apps.each_with_index do |app,i| %>
+    <tr>
+      <td><%= i+1 %></td>
+      <td><%= app.name %></td>
+      <td><%= app.created_at %></td>
+      <td><%= link_to 'Edit', edit_app_path(app) %> / <%= link_to 'Delete', app, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New App', new_app_path %>
