@@ -34,6 +34,9 @@ gem 'devise'
 # format the rails flash messages
 gem 'flash_rails_messages'
 
+# For parent-child relationships
+gem 'ancestry'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

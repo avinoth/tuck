@@ -17,7 +17,7 @@ class TemplatesController < ApplicationController
     @template = @app.templates.new(template_params)
 
     if @template.save
-      redirect_to templates_url(app: @app), notice: 'Template was successfully created.'
+      redirect_to app_templates_url(app: @app), notice: 'Template was successfully created.'
     else
       render :new
     end
@@ -25,7 +25,7 @@ class TemplatesController < ApplicationController
 
   def update
     if @template.update(template_params)
-      redirect_to templates_url(app: @app), notice: 'Template was successfully updated.'
+      redirect_to app_templates_url(app: @app), notice: 'Template was successfully updated.'
     else
       render :edit
     end
@@ -33,7 +33,7 @@ class TemplatesController < ApplicationController
 
   def destroy
     @template.destroy
-    redirect_to templates_url(app: @app), notice: 'Template was successfully destroyed.'
+    redirect_to app_templates_url(app: @app), notice: 'Template was successfully destroyed.'
   end
 
   private
