@@ -6,5 +6,6 @@ FactoryBot.define do
     smtp_address { Faker::Internet.url }
     smtp_port { 587 }
     smtp_authentication { :plain }
+    user
   end
 end

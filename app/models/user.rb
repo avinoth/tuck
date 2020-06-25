@@ -5,4 +5,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :rememberable
 
   validates :email, :password, presence: true
+
+  has_many :apps
 end

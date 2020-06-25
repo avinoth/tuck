@@ -2,18 +2,18 @@ class AppsController < ApplicationController
   before_action :set_app, only: [:show, :edit, :update, :destroy]
 
   def index
-    @apps = App.all
+    @apps = current_user.apps.all
   end
 
   def new
-    @app = App.new
+    @app = current_user.apps.new
   end
 
   def edit
   end
 
   def create
-    @app = App.new(app_params)
+    @app = current_user.apps.new(app_params)
 
     if @app.save
       redirect_to apps_path, notice: 'App was successfully created.'
@@ -38,7 +38,7 @@ class AppsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_app
-      @app = App.find(params[:id])
+      @app = current_user.apps.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

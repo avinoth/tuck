@@ -10,5 +10,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :apps, except: :show
+  resources :apps, except: :show do
+    resources :templates, except: :show
+  end
 end

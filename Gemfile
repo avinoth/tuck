@@ -31,7 +31,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 # Authentication
 gem 'devise'
 
-# format the rails flash messages 
+# format the rails flash messages
 gem 'flash_rails_messages'
 
 group :development, :test do
