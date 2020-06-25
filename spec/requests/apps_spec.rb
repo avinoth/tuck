@@ -24,7 +24,7 @@ RSpec.describe "/apps", type: :request do
 
   describe "GET /index" do
     it "renders a successful response" do
-      App.create! valid_attributes
+      create(:app, user: user)
       get apps_url
       expect(response).to be_successful
     end
@@ -40,7 +40,7 @@ RSpec.describe "/apps", type: :request do
 
   describe "GET /edit" do
     it "render a successful response" do
-      app = App.create! valid_attributes
+      app = create(:app, user: user)
       get edit_app_url(app)
       expect(response).to be_successful
     end
@@ -83,14 +83,14 @@ RSpec.describe "/apps", type: :request do
       }
 
       it "updates the requested app" do
-        app = App.create! valid_attributes
+        app = create(:app, user: user)
         patch app_url(app), params: { app: new_attributes }
         app.reload
         expect(app.name).to eq('Finesse')
       end
 
       it "redirects to the app" do
-        app = App.create! valid_attributes
+        app = create(:app, user: user)
         patch app_url(app), params: { app: new_attributes }
         app.reload
         expect(response).to redirect_to(apps_url)
@@ -99,7 +99,7 @@ RSpec.describe "/apps", type: :request do
 
     context "with invalid parameters" do
       it "renders a successful response (i.e. to display the 'edit' template)" do
-        app = App.create! valid_attributes
+        app = create(:app, user: user)
         patch app_url(app), params: { app: invalid_attributes }
         expect(response).to be_successful
       end
@@ -108,14 +108,14 @@ RSpec.describe "/apps", type: :request do
 
   describe "DELETE /destroy" do
     it "destroys the requested app" do
-      app = App.create! valid_attributes
+      app = create(:app, user: user)
       expect {
         delete app_url(app)
       }.to change(App, :count).by(-1)
     end
 
     it "redirects to the apps list" do
-      app = App.create! valid_attributes
+      app = create(:app, user: user)
       delete app_url(app)
       expect(response).to redirect_to(apps_url)
     end

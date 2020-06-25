@@ -8,7 +8,8 @@ RSpec.describe "apps/edit", type: :view do
       smtp_secret: "MyString",
       smtp_address: "MyString",
       smtp_port: 1,
-      smtp_authentication: "MyString"
+      smtp_authentication: "MyString",
+      user_id: create(:user).id
     ))
   end
 
